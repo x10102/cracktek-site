@@ -1,0 +1,12 @@
+#navbar {
+    width: 100%;
+    text-align: left;
+    padding-left: 0.5em;
+    animation: fadeIn 1.5s ease-in 2s both;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+}

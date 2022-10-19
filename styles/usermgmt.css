@@ -1,0 +1,13 @@
+select {
+    background: black;
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: medium;
+    border: 2px solid white;
+    width: 18em;
+    margin: 0em 3em 3em 3em;
+}
+
+label[for="perms"] {
+    margin-top: 3em;
+}   

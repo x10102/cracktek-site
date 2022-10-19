@@ -1,0 +1,36 @@
+.barg-outer {
+    border: var(--text-color) solid 4px;
+    background: black;
+    height: 10em;
+    width: 3em;
+    padding: 0.5em;
+    margin: 0em 3em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+}
+
+.barg-inner {
+    width: 100%;
+}
+
+.infomon {
+    margin: 2em;
+    padding: 2.5em;
+    border: 3px solid var(--text-color);
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    animation: fadeIn 1.5s ease-in 2s both;
+}
+
+.graphsec {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.montitle {
+    text-align: center;
+    margin-bottom: 2em;
+}

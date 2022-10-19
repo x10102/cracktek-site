@@ -1,0 +1,98 @@
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    
+    background: black;
+    color: var(--text-color);
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-x: hidden;
+    overflow: -moz-scrollbars-none;
+    height: calc(100% - 1em);
+    animation: fadeIn 0.5s linear;
+    
+}
+
+#navbar {
+    animation: none !important;
+}
+
+body::-webkit-scrollbar { width: 0 !important }
+
+#loginform {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: fit-content;
+    margin-top: 7em;
+}
+
+#loginform h1 {
+    font-weight: 600;
+}
+
+input[type=text], input[type=password] {
+  width: 20em;
+  padding: 12px 20px;
+  margin: 1.5em;
+  box-sizing: border-box;
+  background: black;
+  border-bottom: 2px solid white;
+  border-top-width: 0;
+  border-left-width: 0;
+  border-right-width: 0;
+  color: white;
+}
+
+input[type=text]:focus-visible, input[type=password]:focus-visible {
+    outline: none;
+    border-bottom-style: dotted;
+}
+
+#loginbtn {
+    height: 3.5em;
+    width: 9em;
+    margin: 2em;
+    color: white;
+    background: black;
+    outline: none;
+    border: solid 3px white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: medium;
+}
+
+#login-result {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    height: calc(100% - 10em);
+}
+
+#logoutform {
+    display: inline;
+    padding: 0px;
+    margin: 0px;
+}
+
+.loginfail {
+    color: #e00d0d;
+}
+
+.loginsuccess {
+    color: #0dbd3c;
+}
