@@ -11,3 +11,11 @@ select {
 label[for="perms"] {
     margin-top: 3em;
 }   
+
+#title {
+    text-align: center;
+}
+
+td, tr, th, table {
+    text-align: center;
+}
