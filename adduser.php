@@ -19,11 +19,21 @@
 
     session_start(); 
 
-    $users_file = fopen("data/users.json", "r+") or die("Unable to open users file");
-    $users = json_decode(fread($users_file, filesize("data/users.json")), $assoc=true);
+    $hostname = 'localhost';
+    $database = 'cracktek';
+    $db_user = 'admin';
+    $db_pass = 'yuno1582';
+
+    $db = mysqli_connect($hostname, $db_user, $db_pass, $database);
+    if($db === false) {
+        echo "Error connecting to database: ".mysqli_connect_error();
+        die();
+    }
 
     // Allow access without permissions if there are no user accounts yet
-    $no_users = count($users) === 0;
+
+    $u_all = $db->query("SELECT ID FROM users");
+    $no_users = $u_all->num_rows === 0;
 
     if(!isset($_SESSION["login"]) && !$no_users) {
         echo '<div class="login-result"><h2>Pro přístup k této stránce se musíte přihlásit.</h2></div>';
@@ -41,24 +51,33 @@
 
         $name = strtolower($_POST['username']);
         $pass = $_POST['password'];
+
         if (empty($name) || empty($pass)) {
             echo "Invalid parameters";
             die();
-        } else {
-        
-            if(!array_key_exists($name, $users)) {
-                $users[$name] = array("password" => password_hash($pass, 0), 
-                    "is_admin" => $_POST['perms'] === "admin");
-                fclose($users_file);
-                $users_file = fopen("data/users.json", "w+") or die("Unable to open users file");
-                fwrite($users_file, json_encode($users));
-                fclose($users_file);
+        }
+
+        $stmt = $db->prepare("SELECT ID FROM users WHERE username=?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+
+        if($stmt->get_result()->num_rows === 0) {
+            
+            $is_admin = $_POST['perms'] === "admin";
+
+            $stmt_add = $db->prepare("INSERT INTO users (username, password, admin) VALUES (?, ?, ?)");
+            $stmt_add->bind_param("ssi", $name, password_hash($pass, PASSWORD_DEFAULT), $is_admin);
+            
+            if($stmt_add->execute()) {
                 echo "User $name added successfully";
             } else {
-                echo "User already exists!";
+                echo "Unable to add user: ".$db->error;
             }
             
+        } else {
+            echo "User already exists!";
         }
+            
 
         echo '</div>';
 

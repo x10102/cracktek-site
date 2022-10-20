@@ -43,7 +43,7 @@
             echo "Invalid parameters";
             die();
         } else {
-        
+            
             if(array_key_exists($name, $users)) {
                 unset($users[$name]);
                 $users_file = fopen("data/users.json", "w+") or die("Unable to open users file");
