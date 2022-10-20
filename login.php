@@ -45,6 +45,18 @@
             die();
         }
 
+        $result = $db->query("SELECT ID from users");
+        if(empty($result)) {
+            $query = "CREATE TABLE users ( 
+                ID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(64) NOT NULL UNIQUE,
+                password VARCHAR(255) NOT NULL,
+                admin INT(1) NOT NULL,
+                AVATAR MEDIUMBLOB,
+                MOTTO VARCHAR(300))";
+            $db->query($query);
+        }
+
         echo '<div id="login-result">';
 
         if (isset($_POST['logout'])) {
