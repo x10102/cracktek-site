@@ -19,10 +19,10 @@
 
     session_start(); 
 
-    $hostname = 'localhost';
-    $database = 'cracktek';
-    $db_user = 'admin';
-    $db_pass = 'yuno1582';
+    $hostname = $_SERVER['dbhost'];
+    $database = $_SERVER['dbschema'];
+    $db_user = $_SERVER['dbuser'];
+    $db_pass = $_SERVER['dbpasswd'];
 
     $db = mysqli_connect($hostname, $db_user, $db_pass, $database);
     if($db === false) {
