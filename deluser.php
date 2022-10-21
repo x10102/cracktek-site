@@ -17,22 +17,38 @@
     
     <?php
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
     session_start();
 
-    if(!isset($_SESSION["login"])) {
+    $hostname = $_SERVER['dbhost'];
+    $database = $_SERVER['dbschema'];
+    $db_user = $_SERVER['dbuser'];
+    $db_pass = $_SERVER['dbpasswd'];
+
+    $db = mysqli_connect($hostname, $db_user, $db_pass, $database);
+    if($db === false) {
+        echo "Error connecting to database: ".mysqli_connect_error();
+        die();
+    }
+
+    // Allow access without permissions if there are no user accounts yet
+
+    $u_all = $db->query("SELECT username FROM users");
+    $no_users = $u_all->num_rows === 0;
+
+    if(!isset($_SESSION["login"]) && !$no_users) {
         echo '<div class="login-result"><h2>Pro přístup k této stránce se musíte přihlásit.</h2></div>';
         die();
     }
 
-    if(!$_SESSION['is_admin']) {
+    if(!$_SESSION['is_admin'] && !$no_users) {
         echo '<div class="login-result"><h2>CHYBA: Pro přístup k této stránce nemáte dostatečná oprávnění.</h2></div>';
         die();
     }
 
-    $users_file = fopen("data/users.json", "r+") or die("Unable to open users file");
-    $users = json_decode(fread($users_file, filesize("data/users.json")), $assoc=true);
-
-    fclose($users_file);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
@@ -63,8 +79,8 @@
             <h1>Odebrat uživatele</h1>
             <select id="userlist" name="user">';
             
-        foreach(array_keys($users) as $user) {
-            echo "<option value=$user>$user</option>";
+        foreach($u_all->fetch_all(MYSQLI_NUM) as $user) {
+            echo "<option value=$user[0]>$user[0]</option>";
         }
 
         echo '<input id="loginbtn" type="submit" value="Odebrat">

@@ -65,8 +65,10 @@
             
             $is_admin = $_POST['perms'] === "admin";
 
+            $hash = password_hash($pass, PASSWORD_DEFAULT);
+
             $stmt_add = $db->prepare("INSERT INTO users (username, password, admin) VALUES (?, ?, ?)");
-            $stmt_add->bind_param("ssi", $name, password_hash($pass, PASSWORD_DEFAULT), $is_admin);
+            $stmt_add->bind_param("ssi", $name, $hash, $is_admin);
             
             if($stmt_add->execute()) {
                 echo "User $name added successfully";
