@@ -27,14 +27,36 @@
     if(!isset($_SESSION)) {
         session_start();
     }
-    
-    $users_file = fopen("data/users.json", "r+") or die("Došlo k chybě. Zkuste to prosím znovu později nebo kontaktujte administrátora. (File access error)");
-    $users = json_decode(fread($users_file, filesize("data/users.json")), $assoc=true);
 
-    fclose($users_file);
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
+        $hostname = $_SERVER['dbhost'];
+        $database = $_SERVER['dbschema'];
+        $db_user = $_SERVER['dbuser'];
+        $db_pass = $_SERVER['dbpasswd'];
+
+        $db = mysqli_connect($hostname, $db_user, $db_pass, $database);
+        if($db === false) {
+            echo "Error: could not connect to database";
+            die();
+        }
+
+        $result = $db->query("SELECT ID from users");
+        if(empty($result)) {
+            $query = "CREATE TABLE users ( 
+                ID int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(64) NOT NULL UNIQUE,
+                password VARCHAR(255) NOT NULL,
+                admin INT(1) NOT NULL,
+                AVATAR MEDIUMBLOB,
+                MOTTO VARCHAR(300))";
+            $db->query($query);
+        }
+
         echo '<div id="login-result">';
 
 
@@ -55,7 +77,23 @@
         $name = strtolower($_POST['username']);
         $pass = $_POST['password'];
 
-        if(!array_key_exists($name, $users) || !password_verify($pass, $users[$name]["password"])) {
+        $stmt = $db->prepare("SELECT password, admin FROM users WHERE username=?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+
+        var_dump($result);
+
+        if($result->num_rows !== 1) {
+            echo "<h2> Neznámý uživatel nebo nesprávné heslo. </h2>";
+            $_SESSION['login_status'] = STATUS_AUTH_FAIL;
+            header("Location: ".$_SERVER['REQUEST_URI']);
+        }
+
+        $usr = $result->fetch_assoc();
+
+        if(!password_verify($pass, $usr['password'])) {
             echo "<h2> Neznámý uživatel nebo nesprávné heslo. </h2>";
             $_SESSION['login_status'] = STATUS_AUTH_FAIL;
             header("Location: ".$_SERVER['REQUEST_URI']);
@@ -66,7 +104,7 @@
 
             $_SESSION["login"] = TRUE;
             $_SESSION["user"] = $name;
-            $_SESSION["is_admin"] = $users[$name]["is_admin"];
+            $_SESSION["is_admin"] = $usr['admin'];
 
             unset($_POST);
 

@@ -19,11 +19,21 @@
 
     session_start(); 
 
-    $users_file = fopen("data/users.json", "r+") or die("Unable to open users file");
-    $users = json_decode(fread($users_file, filesize("data/users.json")), $assoc=true);
+    $hostname = $_SERVER['dbhost'];
+    $database = $_SERVER['dbschema'];
+    $db_user = $_SERVER['dbuser'];
+    $db_pass = $_SERVER['dbpasswd'];
+
+    $db = mysqli_connect($hostname, $db_user, $db_pass, $database);
+    if($db === false) {
+        echo "Error connecting to database: ".mysqli_connect_error();
+        die();
+    }
 
     // Allow access without permissions if there are no user accounts yet
-    $no_users = count($users) === 0;
+
+    $u_all = $db->query("SELECT ID FROM users");
+    $no_users = $u_all->num_rows === 0;
 
     if(!isset($_SESSION["login"]) && !$no_users) {
         echo '<div class="login-result"><h2>Pro přístup k této stránce se musíte přihlásit.</h2></div>';

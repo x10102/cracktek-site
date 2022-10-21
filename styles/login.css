@@ -38,7 +38,7 @@ body::-webkit-scrollbar { width: 0 !important }
     flex-flow: column nowrap;
     width: 100%;
     height: fit-content;
-    margin-top: 7em;
+    margin-top: 12%;
 }
 
 #loginform h1 {
