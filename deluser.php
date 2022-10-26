@@ -21,7 +21,13 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-    session_start();
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if($_SERVER['login_disabled'] == 'true') {
+        echo '<div id="login-result"> This feature has been disabled by administrator </div>';
+    }
 
     $hostname = $_SERVER['dbhost'];
     $database = $_SERVER['dbschema'];

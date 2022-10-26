@@ -24,8 +24,12 @@
     const STATUS_REQ_ERROR = 1;
     const STATUS_AUTH_FAIL = 2;
     
-    if(!isset($_SESSION)) {
+    if(session_status() === PHP_SESSION_NONE) {
         session_start();
+    }
+
+    if($_SERVER['login_disabled'] == 'true') {
+        echo '<div id="login-result"> This feature has been disabled by administrator </div>';
     }
 
     /*

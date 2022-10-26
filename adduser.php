@@ -17,7 +17,13 @@
     
     <?php
 
-    session_start(); 
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if($_SERVER['login_disabled'] == 'true') {
+        echo '<div id="login-result"> This feature has been disabled by administrator </div>';
+    } 
 
     $hostname = $_SERVER['dbhost'];
     $database = $_SERVER['dbschema'];
