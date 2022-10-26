@@ -16,6 +16,19 @@ label[for="perms"] {
     text-align: center;
 }
 
-td, tr, th, table {
+#usrtable {
+    border-spacing: 30px;
+}
+
+#usrtable td {
     text-align: center;
+    vertical-align: middle;
+}
+
+#heading>th {
+    padding-bottom: 1.5em;
+}
+
+#usrtable th{
+    border-bottom: 2px solid white;
 }
