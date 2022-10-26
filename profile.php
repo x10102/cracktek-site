@@ -22,6 +22,7 @@
 
     if($_SERVER['login_disabled'] == 'true') {
         echo '<div id="login-result"> This feature has been disabled by administrator </div>';
+        die();
     }
 
     $users_file = fopen("data/users.json", "r+") or die("Došlo k chybě. Zkuste to prosím znovu později nebo kontaktujte administrátora. (File access error)");

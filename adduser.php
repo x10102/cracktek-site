@@ -23,6 +23,7 @@
 
     if($_SERVER['login_disabled'] == 'true') {
         echo '<div id="login-result"> This feature has been disabled by administrator </div>';
+        die();
     } 
 
     $hostname = $_SERVER['dbhost'];
