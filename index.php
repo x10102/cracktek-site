@@ -28,7 +28,7 @@
         </div>
         <div class="para-block">
             <h2>Kdo jsme</h2>
-            <p>Jsme Ministerstvo Kebabu. Přestože jste o nás pravděpodobně nikdy neslyšeli (to je dobře), naše práce vás jistě podstatně ovlivňuje. Jsme ti, kteří v tomto státě zajišťují pořádek, realitu a samozřejmě, kebab. Na naší práci závisí každý den životy milionů až miliard lidí, proto jsme vždy připraveni a v pohotovosti.</p>
+            <p>Jsme CrackTek Industries. Přestože jste o nás pravděpodobně nikdy neslyšeli (to je dobře), naše práce vás jistě podstatně ovlivňuje. Jsme ti, kteří v tomto státě zajišťují pořádek, realitu a samozřejmě, kebab. Na naší práci závisí každý den životy milionů až miliard lidí, proto jsme vždy připraveni a v pohotovosti.</p>
         </div>
         <div class="para-block">
             <h2>Co děláme</h2>
@@ -43,9 +43,9 @@
         </div>
         <div class="para-block">
             <h2>Práce u nás</h2>
-            <p>Takže, vy chcete pracovat na Ministerstvu kebabu? Skvěle! Práce u nás nikdy není nudná, každý den objevíte něco nového, co jste nikdy vidět nechtěli! Neváhejte a pošlete svůj životopis ještě dnes. Můžeme vám nabídnout: </p>
+            <p>Takže, vy chcete pracovat na jedné z nejdůležitějších pozic v ČR? Skvěle! Práce u nás nikdy není nudná, každý den objevíte něco nového, co jste nikdy vidět nechtěli! Neváhejte a pošlete svůj životopis ještě dnes. Můžeme vám nabídnout: </p>
             <ul>
-                <li>Nástupní plat <i>237 + 8i</i> Σ/hod</li>
+                <li>Nástupní plat <i>237 + 8i</i> ███/hod</li>
                 <li>Příležitosti k rychlému povýšení jak na organizační, tak metafyzické úrovni</li>
                 <li><span class="redacted">[CHYBA PŘENOSU]</span> stravování na místě</li>
                 <li>Exotická pracoviště o kterých budete vyprávět svým vnoučatům (pokud vám nějaká zůstanou)</li>
