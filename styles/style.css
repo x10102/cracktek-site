@@ -102,39 +102,7 @@ body::-webkit-scrollbar { width: 0 !important }
     animation: 1.5s linear normal popin;
 }
 
-.admin-entry {
-    border: 4px solid lime;
-    height: 1.5em;
-    width: 20em;
-    display: block;
-    color: lime;
-    animation: 1.5s linear alternate infinite schizo;
-    padding: 1.5em 0em;
-}
-
-
-#adlink {
-    text-decoration: none;
-    text-align: center;
-    animation: 5s ease-in normal fadeIn;
-}
-
 img {
     border: 4px solid white;
     animation: fadeIn 1.5s ease-in 2s both;
-}
-
-/*ADMIN PAGE*/
-
-.admin-main {
-    
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    padding: 2em 5em;
-    border: 4px solid lime;
-    margin: 0px;
-    height: 100em;
-    
 }
