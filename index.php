@@ -4,9 +4,9 @@
     <head>
         <meta charset="utf-8">
         <title>uwu</title>
-        <link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="styles/navbar.css">
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles/style.css" type="text/css">
+        <link rel="stylesheet" href="styles/navbar.css" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet" type="text/css">
         <style>
         :root {
             --text-color: white;
@@ -36,7 +36,7 @@
                 <h2>Co děláme</h2>
                 <p>Většina naší práce je přísně utajená a k dokumentaci mají přístup pouze autorizovaní zaměstnanci. Některé z mnoha našich aktivit však zahrnují: </p>
                 <ul>
-                    <li></li>
+                    <li>Posouvání technologií České Republiky na vyšší úroveň</li>
                     <li>Kontrola populace divokých tygrů v Ústí nad Labem</li>
                     <li>Prodej smaženého sýru v nebezpečných zónách</li>
                     <li>Vyhledání a zničení <b>Tebe, ty hajzle!</b> Ne nemyslím tebe, mluvím na Toho Za Tebou.</li>
