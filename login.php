@@ -1,8 +1,13 @@
+<?php
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE HTML>
 <html lang="cs">
 <head>
     <meta charset="utf-8">
-    <title>uwu</title>
+    <title>uwu</title>  
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
@@ -23,10 +28,6 @@
     const STATUS_LOGOUT = 0;
     const STATUS_REQ_ERROR = 1;
     const STATUS_AUTH_FAIL = 2;
-    
-    if(session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
 
     if($_SERVER['login_disabled'] == 'true') {
         echo '<div id="login-result"> This feature has been disabled by administrator </div>';

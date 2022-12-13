@@ -18,6 +18,7 @@ label[for="perms"] {
 
 #usrtable {
     border-spacing: 30px;
+    padding: 0em 5em;
 }
 
 #usrtable td {
@@ -32,3 +33,4 @@ label[for="perms"] {
 #usrtable th{
     border-bottom: 2px solid white;
 }
+
