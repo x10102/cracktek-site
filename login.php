@@ -28,10 +28,6 @@
     const STATUS_LOGOUT = 0;
     const STATUS_REQ_ERROR = 1;
     const STATUS_AUTH_FAIL = 2;
-    
-    if(session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
 
     if($_SERVER['login_disabled'] == 'true') {
         echo '<div id="login-result"> This feature has been disabled by administrator </div>';
@@ -94,8 +90,6 @@
         $result = $stmt->get_result();
         $stmt->close();
 
-        var_dump($result);
-
         if($result->num_rows !== 1) {
             echo "<h2> Neznámý uživatel nebo nesprávné heslo. </h2>";
             $_SESSION['login_status'] = STATUS_AUTH_FAIL;
@@ -118,10 +112,6 @@
             $_SESSION["is_admin"] = $usr['admin'];
 
             unset($_POST);
-
-            echo "<h2> Uživatel $name se přihlásil.</h2><br>";
-            echo "<i> (Heslo: $pass)</i>";
-
             header("Location: ".$_SERVER['REQUEST_URI']);
         }
               
@@ -129,7 +119,6 @@
         echo '</div>';
 
     } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
 
         if(isset($_SESSION['login']) && $_SESSION['login']) {
             echo '<div id="login-result"><h2>Jste přihlášen jako '.$_SESSION['user'].'.</h2>
@@ -163,12 +152,8 @@
             }
             unset($_SESSION['login_status']);
         }
-
         echo '</form>';
     }
     ?>
-
-    
-    
 </body>
 </html>
