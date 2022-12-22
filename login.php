@@ -20,7 +20,7 @@
 <body>
     
     <div id="navbar">
-    <script src="navbar.js"></script>    
+        <?php require_once("navbar.php");?>    
     </div>
 
     <?php

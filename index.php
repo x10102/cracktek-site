@@ -1,3 +1,8 @@
+<?php
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE HTML>
 <html lang="cs">
     
@@ -15,7 +20,7 @@
     </head>
     <body>
         <div id="navbar">
-        <script src="navbar.js"></script>    
+            <?php require_once("navbar.php");?>    
         </div>
         <div class="page-main">
             <div class="title-big">
