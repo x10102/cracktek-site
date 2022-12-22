@@ -9,8 +9,8 @@
     <meta charset="utf-8">
     <title>uwu</title>
     <link rel="stylesheet" href="styles/login.css">
-    <link rel="stylesheet" href="styles/usermgmt.css">
     <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/usermgmt.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,17 +19,21 @@
     </style>
 </head>
 <body>
-    
-    <?php
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+<?php
+
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if($_SERVER['login_disabled'] == 'true') {
         echo '<div id="login-result"> This feature has been disabled by administrator </div>';
         die();
-    }
+    } 
 
     $hostname = $_SERVER['dbhost'];
     $database = $_SERVER['dbschema'];
@@ -44,7 +48,7 @@ error_reporting(E_ALL);
 
     // Allow access without permissions if there are no user accounts yet
 
-    $u_all = $db->query("SELECT username FROM users");
+    $u_all = $db->query("SELECT * FROM users");
     $no_users = $u_all->num_rows === 0;
 
     if(!isset($_SESSION["login"]) && !$no_users) {
@@ -58,45 +62,31 @@ error_reporting(E_ALL);
     }
 
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        echo '<div id="login-result">';
+    if($_SERVER['REQUEST_METHOD'] == "GET") {
+        echo '
+<h1 id="title">Správa Uživatelů</h1>
+<table id="usrtable">
+    <tr id="heading">
+        <th></th>
+        <th>ID</th>
+        <th>Jméno</th>
+        <th>Oprávnění</th>
+    </tr>';
 
-        $name = strtolower($_POST['user']);
-        if (empty($name)) {
-            echo "Invalid parameters";
-            die();
-        } else {
-            
-            if(array_key_exists($name, $users)) {
-                unset($users[$name]);
-                $users_file = fopen("data/users.json", "w+") or die("Unable to open users file");
-                fwrite($users_file, json_encode($users));
-                fclose($users_file);
-                echo "User $name deleted successfully";
-            } else {
-                echo "User doesn't exist!";
-            }
-            
-        }
-
-        echo '</div>';
-
-    } else if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        echo '<form id="loginform" action="/deluser.php" method="post">
-            <h1>Odebrat uživatele</h1>
-            <select id="userlist" name="user">';
-            
-        foreach($u_all->fetch_all(MYSQLI_NUM) as $user) {
-            echo "<option value=$user[0]>$user[0]</option>";
-        }
-
-        echo '<input id="loginbtn" type="submit" value="Odebrat">
-            </form>';
+    $users = $u_all->fetch_all(MYSQLI_ASSOC);
+    foreach($users as $user) {
+        $id = $user['ID'];
+        $chb_name = "chb".$id;
+        $username = $user['username'];
+        $perms = $user['admin'] == 1 ? "Administrátor" : "Uživatel"; 
+        echo "<tr>
+            <td><input type=\"checkbox\" name=\"$chb_name\"></input></td><td>$id</td><td>$username</td><td>$perms</td></tr>";
     }
-    ?>
 
-    
-    
+        echo '</table>';
+    }
+
+?>
+
 </body>
 </html>

@@ -1,3 +1,8 @@
+<?php
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE HTML>
 <html lang="cs">
 <head>
@@ -17,7 +22,10 @@
     
     <?php
 
-    session_start(); 
+    if($_SERVER['login_disabled'] == 'true') {
+        echo '<div id="login-result"> This feature has been disabled by administrator </div>';
+        die();
+    } 
 
     $hostname = $_SERVER['dbhost'];
     $database = $_SERVER['dbschema'];
@@ -51,24 +59,35 @@
 
         $name = strtolower($_POST['username']);
         $pass = $_POST['password'];
+
         if (empty($name) || empty($pass)) {
             echo "Invalid parameters";
             die();
-        } else {
-        
-            if(!array_key_exists($name, $users)) {
-                $users[$name] = array("password" => password_hash($pass, 0), 
-                    "is_admin" => $_POST['perms'] === "admin");
-                fclose($users_file);
-                $users_file = fopen("data/users.json", "w+") or die("Unable to open users file");
-                fwrite($users_file, json_encode($users));
-                fclose($users_file);
+        }
+
+        $stmt = $db->prepare("SELECT ID FROM users WHERE username=?");
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+
+        if($stmt->get_result()->num_rows === 0) {
+            
+            $is_admin = $_POST['perms'] === "admin";
+
+            $hash = password_hash($pass, PASSWORD_DEFAULT);
+
+            $stmt_add = $db->prepare("INSERT INTO users (username, password, admin) VALUES (?, ?, ?)");
+            $stmt_add->bind_param("ssi", $name, $hash, $is_admin);
+            
+            if($stmt_add->execute()) {
                 echo "User $name added successfully";
             } else {
-                echo "User already exists!";
+                echo "Unable to add user: ".$db->error;
             }
             
+        } else {
+            echo "User already exists!";
         }
+            
 
         echo '</div>';
 

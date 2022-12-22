@@ -1,3 +1,8 @@
+<?php
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE HTML>
 <html lang="cs">
 <head>
@@ -15,7 +20,7 @@
 <body>
     
     <div id="navbar">
-    <script src="navbar.js"></script>    
+        <?php require_once("navbar.php");?>    
     </div>
 
     <?php
@@ -24,13 +29,20 @@
     const STATUS_REQ_ERROR = 1;
     const STATUS_AUTH_FAIL = 2;
     
-    if(!isset($_SESSION)) {
+    if(session_status() === PHP_SESSION_NONE) {
         session_start();
     }
 
+    if($_SERVER['login_disabled'] == 'true') {
+        echo '<div id="login-result"> This feature has been disabled by administrator </div>';
+        die();
+    }
+
+    /*
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
+    */
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
@@ -58,7 +70,6 @@
         }
 
         echo '<div id="login-result">';
-
 
         if (isset($_POST['logout'])) {
             session_unset();

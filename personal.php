@@ -1,3 +1,8 @@
+<?php
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+?>
 <!DOCTYPE HTML>
 <html lang="cs">
 <head>
@@ -14,11 +19,11 @@
 </head>
 <body>
     <div id="navbar">
-    <script src="navbar.js"></script>    
+        <?php require_once("navbar.php");?>    
     </div>
     <div class="page-main">
         <div class="title-big">
-            <h1><b>Ondrovo Osobní Profil</b></h1>
+            <h1><b>Cheemsovo Osobní Profil</b></h1>
         </div>
         <div class="motto-box">
             <span>UwU</span>
@@ -37,16 +42,16 @@
             <ul>
                 <li>Studuju rap. Tohle je škola rapu tak sa uč a ticho pozeraj.</li>
                 <li>Studuju kebab. I když ho studovat už nemusím. Nikdo ho nezná tak dobře jako já.</li>
-                <li>Střední Průmyslovou a Vyšší Odbornou Školu Elektrotechnickou Františka Křižíka na Příkopech. Nejlepší škola. Bude ze mě velký elektrotechnik.</li>
+                <li>Střední Průmyslovou a Vyšší Odbornou Školu Elektrotechnickou Františka Křižíka na Příkopech. Nejlepší škola. Bude ze mě velký elektrotechnik informatik ekonomik.</li>
             </ul>
         </div>
         <div class="para-block">
             <h2>PRACOVNÍ ZKUŠENOSTI</h2>
             <p>Jsem zkušený v každé oblasti protože jsem perfektní. Ano, dámy, v <i>každé</i> oblasti... ;)<br>Hodilo by se sem nějaké vypsat, že? Dobře.</p>
             <ul>
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
+                <li>Na základce jsem lidem opravoval mobily</li>
+                <li>Umím uvařit palačinky</li>
+                <li><a href="http://scp-cs.wikidot.com/">SCP Admin</a></li>
             </ul>
         </div>
 	<img src="https://chamik.eu/assets/images/sumisplouchalik/sumisplouchalik.png">
