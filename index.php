@@ -65,7 +65,7 @@
                     <li>Chuť k práci</li>
                     <li>Byt / dům / karavan postavený před rokem 1973</li>
                     <li>Znalosti Latiny minimálně na úrovni B2</li>
-                    <li>Schopnost uvařit špagety za dobu menší než 480 vteřin</li>
+                    <li>Schopnost uvařit špagety za dobu kratší než 480 vteřin</li>
                     <li><span class="redacted">[VYMAZÁNO]</span></li>
                 </ul>
                 </div>
