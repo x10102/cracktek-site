@@ -7,7 +7,7 @@
 <html lang="cs">
 <head>
     <meta charset="utf-8">
-    <title>uwu</title>
+    <title>CrackTek Industries</title>
     <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="styles/usermgmt.css">
     <link rel="stylesheet" href="styles/navbar.css">
