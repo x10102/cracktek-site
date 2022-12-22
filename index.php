@@ -8,7 +8,7 @@
     
     <head>
         <meta charset="utf-8">
-        <title>uwu</title>
+        <title>CrackTek Industries</title>
         <link rel="stylesheet" href="styles/style.css" type="text/css">
         <link rel="stylesheet" href="styles/navbar.css" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet" type="text/css">
