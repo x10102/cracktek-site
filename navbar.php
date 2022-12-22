@@ -3,6 +3,7 @@
 $urls = array(
     'index.php' => 'Hlavní Strana',
     'contact.php' => 'Kontakty',
+    'projects.php' => 'Projekty',
     'personal.php' => 'Profil Majitele'
 );
 
