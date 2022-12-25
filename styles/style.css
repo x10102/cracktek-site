@@ -39,18 +39,6 @@ body {
 
 body::-webkit-scrollbar { width: 0 !important }
 
-a {
-    color: white;
-    font-weight: bold;
-    text-decoration: underline;
-    transition: 0.5s linear;
-}
-
-a:hover {
-    color: black !important;
-    background: white;
-}
-
 .title-big {
     animation: 1s linear normal popin;
     display: block;
