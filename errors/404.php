@@ -37,6 +37,6 @@
     <body>
         <h1>404</h1>
         <p>Tohle tady nevedeme, chyba je mezi monitorem a židlí.</p>
-        <a href="index.php">Zpátky do bezpečí?</a>
+        <a href="https://cracktek.eu/index.php">Zpátky do bezpečí?</a>
     </body>
 </html>
