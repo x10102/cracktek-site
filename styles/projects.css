@@ -1,0 +1,56 @@
+@media screen {
+    
+}
+
+body {
+    
+    background: black;
+    color: var(--text-color);
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-x: hidden;
+    overflow: -moz-scrollbars-none;
+    
+}
+
+body::-webkit-scrollbar { width: 0 !important }
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.pr-view-item {
+    display: flex;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 20em;
+    padding: 1em;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
+    margin-bottom: 5vh;
+    min-height: 35em;
+}
+
+.pr-view-item:hover {
+    box-shadow: 0px 0px 5px 5px rgba(255, 255, 255, 0.2);
+}
+
+.pr-view-main {
+    padding: 2em 4em;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+p {
+    overflow-wrap: anywhere;
+    text-align: center;
+}
