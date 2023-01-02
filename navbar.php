@@ -26,7 +26,7 @@ if(@$_SESSION['is_admin']) {
 $idx = 0;
 foreach($urls as $link => $title) {
     if(basename($_SERVER['PHP_SELF']) != $link) {
-        echo "<a href=\"$link\">$title</a>";
+        echo "<a href=\"https://cracktek.eu/$link\">$title</a>";
     } else {
         echo "<span style=\"font-weight: 600;\">$title</span>";
     }
